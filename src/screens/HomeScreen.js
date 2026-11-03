@@ -52,6 +52,7 @@ export default function HomeScreen() {
           key={numColumns}  // wajib: paksa render ulang saat kolom berubah
           data={data}
           numColumns={numColumns}
+          style={styles.grid}
           keyExtractor={(item) => String(item.id)}
           contentContainerStyle={[styles.list, { paddingBottom: 24 + insets.bottom }]}
           ListHeaderComponent={
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   body: { flex: 1 },
   search: { paddingHorizontal: 16, paddingTop: 12 },
+  grid: { flex: 1 },  // grid mengisi sisa ruang, bukan menekan chip di atasnya
   list: { paddingHorizontal: 10 },
   empty: { textAlign: 'center', marginTop: 40 },
 });

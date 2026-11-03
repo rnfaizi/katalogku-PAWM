@@ -36,7 +36,9 @@ export default function CategoryChips({ items, selected, onSelect }) {
 }
 
 const styles = StyleSheet.create({
-  scroll: { flexGrow: 0 },  // jangan ambil sisa tinggi layar
+  // flexGrow 0: jangan ambil sisa tinggi layar
+  // flexShrink 0: jangan ikut mengecil saat daftar produk panjang (ScrollView bawaannya bisa menyusut)
+  scroll: { flexGrow: 0, flexShrink: 0 },
   row: { paddingHorizontal: 16, paddingBottom: 8, gap: 8 },
   chip: { paddingHorizontal: 14, paddingVertical: 8,
     borderRadius: 20, borderWidth: 1 },
