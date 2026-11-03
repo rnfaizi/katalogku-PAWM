@@ -13,6 +13,8 @@ export const COLORS = {
   imageBg: '#EEEEEE',    // latar gambar saat belum termuat
   star: '#F59E0B',       // bintang rating
   shadow: '#000000',     // bayangan kartu
+  overlay: 'rgba(0,0,0,0.4)', // lapisan gelap di atas gambar banner
+  onOverlay: '#FFFFFF',  // teks di atas overlay
 };
 
 // Versi mode gelap: nama kunci sama, warna disesuaikan agar tetap kontras
@@ -30,4 +32,6 @@ export const DARK_COLORS = {
   imageBg: '#334155',
   star: '#FBBF24',
   shadow: '#000000',
+  overlay: 'rgba(0,0,0,0.5)',
+  onOverlay: '#FFFFFF',
 };

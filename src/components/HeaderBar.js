@@ -9,7 +9,15 @@ export default function HeaderBar({ title, subtitle, onBack }) {
 
   return (
     <View
-      style={[styles.bar, { paddingTop: insets.top + 12, backgroundColor: colors.primary }]}>
+      style={[
+        styles.bar,
+        {
+          paddingTop: insets.top + 12,
+          paddingLeft: insets.left + 16,   // notch di kiri/kanan saat landscape
+          paddingRight: insets.right + 16,
+          backgroundColor: colors.primary,
+        },
+      ]}>
       {onBack ? (
         <Pressable
           onPress={onBack}
@@ -31,8 +39,7 @@ export default function HeaderBar({ title, subtitle, onBack }) {
 }
 
 const styles = StyleSheet.create({
-  bar: { flexDirection: 'row', alignItems: 'center',
-    paddingHorizontal: 16, paddingBottom: 14 },
+  bar: { flexDirection: 'row', alignItems: 'center', paddingBottom: 14 },
   back: { marginRight: 12 },
   title: { fontSize: 20, fontWeight: 'bold' },
   sub: { fontSize: 13, marginTop: 2 },
