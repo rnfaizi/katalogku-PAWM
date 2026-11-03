@@ -12,7 +12,7 @@ import { useThemeColors } from '../hooks/useThemeColors';
 
 const URUTAN = ['Termurah', 'Termahal'];
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const { width } = useWindowDimensions(); // lebar layar (dp)
   const insets = useSafeAreaInsets();      // notch kiri/kanan saat landscape
   const { colors } = useThemeColors();
@@ -54,7 +54,7 @@ export default function HomeScreen() {
           numColumns={numColumns}
           style={styles.grid}
           keyExtractor={(item) => String(item.id)}
-          contentContainerStyle={[styles.list, { paddingBottom: 24 + insets.bottom }]}
+          contentContainerStyle={styles.list}
           ListHeaderComponent={
             <PromoBanner title="Diskon 50%" subtitle="Khusus produk pilihan minggu ini"
               image="https://picsum.photos/id/1060/800/400" />}
@@ -63,7 +63,9 @@ export default function HomeScreen() {
           renderItem={({ item }) => (
             <View style={{ width: `${100 / numColumns}%` }}>
               <Card title={item.title} price={item.price}
-                image={item.thumbnail} rating={item.rating} />
+                image={item.thumbnail} rating={item.rating}
+                // Kirim id saja; Detail mencari produknya sendiri (persiapan Modul 7)
+                onPress={() => navigation.navigate('Detail', { id: item.id })} />
             </View>
           )}
         />
@@ -77,6 +79,6 @@ const styles = StyleSheet.create({
   body: { flex: 1 },
   search: { paddingHorizontal: 16, paddingTop: 12 },
   grid: { flex: 1 },  // grid mengisi sisa ruang, bukan menekan chip di atasnya
-  list: { paddingHorizontal: 10 },
+  list: { paddingHorizontal: 10, paddingBottom: 24 },
   empty: { textAlign: 'center', marginTop: 40 },
 });

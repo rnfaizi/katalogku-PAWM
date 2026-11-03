@@ -6,17 +6,27 @@ import Button from '../components/Button';
 import { DUMMY_PRODUCTS } from '../data/dummy';
 import { useThemeColors } from '../hooks/useThemeColors';
 
-export default function DetailScreen() {
-  const product = DUMMY_PRODUCTS[0]; // Modul 5: dari route.params
+export default function DetailScreen({ route, navigation }) {
+  const { id } = route.params; // hanya id yang dikirim dari Beranda
+  const product = DUMMY_PRODUCTS.find((p) => p.id === id); // Modul 7: ambil dari API
   const { width, height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const { colors } = useThemeColors();
   // Landscape / tablet: gambar di kiri, info di kanan agar gambar tidak terlalu besar
   const wide = width > height || width >= 768;
 
+  if (!product) {
+    return (
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
+        <HeaderBar title="Detail Produk" onBack={() => navigation.goBack()} />
+        <Text style={[styles.notFound, { color: colors.muted }]}>Produk tidak ditemukan</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <HeaderBar title="Detail Produk" />
+      <HeaderBar title={product.title} onBack={() => navigation.goBack()} />
       <ScrollView
         contentContainerStyle={[
           styles.content,
@@ -46,6 +56,7 @@ export default function DetailScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
+  notFound: { textAlign: 'center', marginTop: 40 },
   content: { padding: 16 },
   contentWide: { flexDirection: 'row', gap: 24, alignItems: 'flex-start' },
   image: { width: '100%', aspectRatio: 1, borderRadius: 16 },
