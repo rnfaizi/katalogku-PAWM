@@ -8,6 +8,11 @@ export const COLORS = {
   muted: '#6B7280',
   border: '#D1D5DB',
   danger: '#DC2626',
+  onPrimary: '#FFFFFF',  // teks/ikon di atas primary & danger
+  headerSub: '#C9D5D6',  // subjudul di HeaderBar
+  imageBg: '#EEEEEE',    // latar gambar saat belum termuat
+  star: '#F59E0B',       // bintang rating
+  shadow: '#000000',     // bayangan kartu
 };
 
 // Versi mode gelap: nama kunci sama, warna disesuaikan agar tetap kontras
@@ -20,4 +25,9 @@ export const DARK_COLORS = {
   muted: '#9CA3AF',
   border: '#374151',
   danger: '#F87171',
+  onPrimary: '#0F172A',
+  headerSub: '#1E3A8A',
+  imageBg: '#334155',
+  star: '#FBBF24',
+  shadow: '#000000',
 };
