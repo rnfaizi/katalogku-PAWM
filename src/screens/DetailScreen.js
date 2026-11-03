@@ -5,6 +5,7 @@ import HeaderBar from '../components/HeaderBar';
 import Button from '../components/Button';
 import { DUMMY_PRODUCTS } from '../data/dummy';
 import { useThemeColors } from '../hooks/useThemeColors';
+import { useFavorit } from '../context/FavoritContext';
 
 export default function DetailScreen({ route, navigation }) {
   const { id } = route.params; // hanya id yang dikirim dari Beranda
@@ -12,6 +13,8 @@ export default function DetailScreen({ route, navigation }) {
   const { width, height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const { colors } = useThemeColors();
+  const { isFavorit, toggleFavorit } = useFavorit();
+  const fav = isFavorit(id);
   // Landscape / tablet: gambar di kiri, info di kanan agar gambar tidak terlalu besar
   const wide = width > height || width >= 768;
 
@@ -47,7 +50,10 @@ export default function DetailScreen({ route, navigation }) {
           <Text style={[styles.price, { color: colors.accent }]}>$ {product.price}</Text>
           <Text style={[styles.rating, { color: colors.muted }]}>Rating {product.rating} / 5</Text>
           <Text style={[styles.desc, { color: colors.text }]}>{product.description}</Text>
-          <Button title="Tambah ke Favorit" onPress={() => {}} />
+          <Button
+            title={fav ? 'Hapus dari Favorit' : 'Tambah ke Favorit'}
+            variant={fav ? 'outline' : 'primary'}
+            onPress={() => toggleFavorit(product)} />
         </View>
       </ScrollView>
     </View>
